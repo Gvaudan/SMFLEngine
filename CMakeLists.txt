@@ -25,7 +25,7 @@ message(STATUS "Detect and add SFML")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 set(SFML_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
 #Find any version 2.X of SFML
-#See the FindSFML.cmake file for additional details and instructions
+#See the FindSFML.cmake_modules file for additional details and instructions
 find_package(SFML 2 REQUIRED network audio graphics window system)
 if (SFML_FOUND)
     message(STATUS "SFML Found")
@@ -50,8 +50,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
 else ()
     file(GLOB boost_libs ${BOOST_LIBRARYDIR}/*-mgw73-mt-x64-1_67.a)
 endif ()
-
-
 message(STATUS "Boost libs : ${boost_libs}")
 
 target_link_libraries(2DGameFramework ${boost_libs})
