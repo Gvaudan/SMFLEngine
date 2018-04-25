@@ -1,0 +1,13 @@
+//
+// Created by David on 22/04/2018.
+//
+
+#ifndef INC_2DGAMEFRAMEWORK_SETTINGS_H
+#define INC_2DGAMEFRAMEWORK_SETTINGS_H
+
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 480
+#define WINDOW_TITLE "2DGameFrameWork"
+#define WINDOW_STYLE sf::Style::Default
+
+#endif //INC_2DGAMEFRAMEWORK_SETTINGS_H

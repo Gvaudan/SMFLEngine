@@ -1,0 +1,14 @@
+//
+// Created by David on 22/04/2018.
+//
+
+#ifndef INC_2DGAMEFRAMEWORK_INPUTHANDLER_HH
+#define INC_2DGAMEFRAMEWORK_INPUTHANDLER_HH
+
+
+class C_InputHandler {
+
+};
+
+
+#endif //INC_2DGAMEFRAMEWORK_INPUTHANDLER_HH
