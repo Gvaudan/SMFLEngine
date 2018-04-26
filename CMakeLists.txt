@@ -34,6 +34,9 @@ if (SFML_FOUND)
     target_link_libraries(2DGameFramework ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 endif ()
 
+message(STATUS "Adding Thor...")
+set(THOR ${CMAKE_SOURCE_DIR}/lib/libthor-s.a )
+
 message(STATUS "Adding Boost...")
 
 set(BOOST_INCLUDEDIR C:/DEV/boost/include/boost-1_67)
@@ -53,4 +56,5 @@ endif ()
 message(STATUS "Boost libs : ${boost_libs}")
 
 target_link_libraries(2DGameFramework ${boost_libs})
+target_link_libraries(2DGameFramework  ${THOR})
 target_link_libraries(2DGameFramework -Wall -lpthread -lws2_32)
