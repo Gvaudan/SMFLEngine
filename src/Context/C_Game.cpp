@@ -39,6 +39,12 @@ bool C_Game::init() {
     BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__;
     //TextureManager::get_instance()->load("","");
 
+    m_font = C_RessourcesManager::get_instance()->load_font("FPS", "ressources/fonts/8-Bit Madness.ttf");
+    mFont = *m_font.get();
+    mStatisticsText.setFont(mFont);
+    mStatisticsText.setCharacterSize(24); // in pixels, not points!
+    mStatisticsText.setFillColor(sf::Color::Red);
+
     C_EntityFactory::get_instance()->RegisterType("test-sprite", new C_TestEntityCreator());
     m_test_entitie = (C_TestEntitie *) C_EntityFactory::get_instance()->Create("test-sprite");
     m_test_entitie->set_current_state(new C_TestEntitieState(m_test_entitie));
@@ -61,7 +67,7 @@ void C_Game::render() {
 
     m_window.setView(m_window.getDefaultView());
     m_test_entitie->draw(m_window, sf::RenderStates::Default);
-    //m_window.draw(mStatisticsText);
+    m_window.draw(mStatisticsText);
     m_window.display();
 }
 
@@ -83,7 +89,7 @@ void C_Game::update_static(sf::Time p_elapsed_time) {
     mStatisticsNumFrames += 1;
 
     if (mStatisticsUpdateTime >= sf::seconds(1.0f)) {
-        std::string str = "FPS = " + std::to_string(mStatisticsNumFrames) + " - " +
+        std::string str = "FPS = " + std::to_string(mStatisticsNumFrames) + "\n" +
                           "TimeUpdate = " +
                           std::to_string(mStatisticsUpdateTime.asMicroseconds() / mStatisticsNumFrames) +
                           "us";

@@ -50,6 +50,8 @@ private:
     C_World m_world;
     C_TestEntitie *m_test_entitie;
 
+    std::shared_ptr<sf::Font> m_font;
+
 };
 
 
