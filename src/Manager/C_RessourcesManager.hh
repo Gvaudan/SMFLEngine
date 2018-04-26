@@ -7,6 +7,8 @@
 
 #include "../Graphic/C_TextureHolder.hh"
 
+#include <Thor/Resources.hpp>
+
 class C_RessourcesManager : public TemplateSingleton<C_RessourcesManager> {
 private:
   C_RessourcesManager();
