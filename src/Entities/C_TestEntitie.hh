@@ -5,18 +5,22 @@
 #ifndef INC_2DGAMEFRAMEWORK_C_TESTENTITIE_HH
 #define INC_2DGAMEFRAMEWORK_C_TESTENTITIE_HH
 
-#include <SFML/Graphics/RectangleShape.hpp>
+
 #include "../Manager/C_EntityFactory.hh"
-
-#include "../State/C_PlayerState.h"
-
+#include <SFML/Graphics/RectangleShape.hpp>
 #include <Thor/Input.hpp>
 
+class C_TestEntitieState;
 class C_TestEntitie : public C_Entity {
+
 public:
     C_TestEntitie();
 
+    explicit C_TestEntitie(C_TestEntitieState *p_current_state);
+
     void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
+
+    void update(sf::Time dt) override;
 
     void on_move_left();
 
@@ -26,13 +30,13 @@ public:
 
     void on_move_down();
 
-    C_PlayerState *get_current_state() const;
+    C_TestEntitieState *get_current_state() const;
 
-    void set_current_state(C_PlayerState *m_current_state);
+    void set_current_state(C_TestEntitieState *m_current_state);
 
 private:
     sf::RectangleShape m_rectangle;
-    C_PlayerState *m_current_state = nullptr;
+    C_TestEntitieState *m_current_state = nullptr;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -40,6 +44,8 @@ private:
 class C_TestEntityCreator : public C_BaseEntityCreator {
 public:
     C_TestEntitie *C_CreateEntity() const override;
+
+    C_TestEntitie *C_CreateEntity(C_TestEntitieState *p_state);
 };
 
 #endif //INC_2DGAMEFRAMEWORK_C_TESTENTITIE_HH

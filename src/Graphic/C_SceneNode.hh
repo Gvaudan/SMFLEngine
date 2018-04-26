@@ -24,7 +24,7 @@ public:
 
   Ptr detachChild(const C_SceneNode &node);
 
-  void update(sf::Time dt);
+    virtual void update(sf::Time dt);
 
   sf::Vector2f getWorldPosition() const;
 

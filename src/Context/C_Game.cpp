@@ -4,16 +4,16 @@
 
 #include "C_Game.hh"
 #include "../Clock/C_Timer.hh"
+#include "../State/C_GameStateMachine.h"
 #include "../Manager/C_RessourcesManager.hh"
+#include "../State/C_TestStateMachine.hh"
 #include <iostream>
 
 using namespace std;
 
 C_Game::C_Game()
         : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE, WINDOW_STYLE),
-          m_world(m_window), mFont(), mStatisticsText(), mStatisticsUpdateTime(), mStatisticsNumFrames(0) {
-
-}
+          m_world(m_window), mFont(), mStatisticsText(), mStatisticsUpdateTime(), mStatisticsNumFrames(0) {}
 
 void C_Game::run() {
     cout << __PRETTY_FUNCTION__ << endl;
@@ -41,11 +41,19 @@ bool C_Game::init() {
 
     C_EntityFactory::get_instance()->RegisterType("test-sprite", new C_TestEntityCreator());
     m_test_entitie = (C_TestEntitie *) C_EntityFactory::get_instance()->Create("test-sprite");
+    m_test_entitie->set_current_state(new C_TestEntitieState(m_test_entitie));
+
+    C_TestStateMachine::get_instance()->set_entitie(m_test_entitie);
+    C_TestStateMachine::get_instance()->push_state(m_test_entitie->get_current_state());
+
+    C_GameStateMachine::get_instance()->push_state(new C_InGameState());
+
     return false;
 }
 
 void C_Game::update() {
     m_test_entitie->update(C_Timer::get_instance()->get_time());
+    C_GameStateMachine::get_instance()->update();
 }
 
 void C_Game::render() {
@@ -60,7 +68,6 @@ void C_Game::render() {
 void C_Game::handleEvent() {
     sf::Event event;
     C_EventHandler::get_instance()->process_event(event, &m_window);
-    //m_test_entitie->update_actions(m_window);
 }
 
 void C_Game::exit() {

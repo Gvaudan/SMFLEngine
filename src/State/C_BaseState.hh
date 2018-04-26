@@ -6,7 +6,6 @@
 #define INC_2DGAMEFRAMEWORK_BASESTATE_HH
 
 #include <Thor/Input.hpp>
-#include <string>
 
 class C_BaseState {
 public:
@@ -24,12 +23,19 @@ public:
 
     void push_action(std::string p_name, thor::Action p_action);
 
+    void push_event(sf::Event &p_event);
+
+    bool is_cancelable() const;
+
+    const thor::ActionMap<std::string> &get_action_map() const;
+
 protected:
-    bool m_is_cancelable = false;
+    virtual void init_actions();
+
+    bool m_is_cancelable = true;
+
     std::string m_state_id;
     thor::ActionMap<std::string> m_action_map;
-public:
-    const thor::ActionMap<std::string> &get_action_map() const;
 };
 
 

@@ -10,6 +10,7 @@ include_directories(${BOOST_INCLUDEDIR})
 link_directories(${BOOST_LIBRARYDIR})
 include_directories(src/Tools/)
 
+add_library(libthor STATIC IMPORTED)
 file(GLOB sources_files
         src/main.cpp
         src/Clock/*.cpp
@@ -20,17 +21,22 @@ file(GLOB sources_files
         src/Input/*.cpp
         src/Physics/*.cpp
         src/Player/*.cpp
-        src/State/*.cpp
         src/Manager/*.cpp
+        src/State/*.cpp
         )
 
 
-add_executable(2DGameFramework ${sources_files})
+add_executable(2DGameFramework ${sources_files} )
+
+
+target_link_libraries(2DGameFramework libthor)
 
 # Detect and add SFML
 message(STATUS "Detect and add SFML")
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules" ${CMAKE_MODULE_PATH})
 set(SFML_ROOT ${CMAKE_CURRENT_SOURCE_DIR})
+set(SFML_STATIC_LIBRARIES TRUE)
+
 #Find any version 2.X of SFML
 #See the FindSFML.cmake_modules file for additional details and instructions
 find_package(SFML 2 REQUIRED network audio graphics window system)
@@ -45,12 +51,14 @@ message(STATUS "Linking Boost and Thor to project")
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     file(GLOB boost_libs ${BOOST_LIBRARYDIR}/*-mgw73-mt-d-x64-1_67.a)
+    set_property(TARGET libthor PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/lib/libthor-s-d.a)
+
 else ()
     file(GLOB boost_libs ${BOOST_LIBRARYDIR}/*-mgw73-mt-x64-1_67.a)
+    set_property(TARGET libthor PROPERTY IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/lib/libthor-s.a)
+
 endif ()
 
-
 message(STATUS "Boost libs : ${boost_libs}")
+target_link_libraries(2DGameFramework libthor -Wall -lpthread)
 target_link_libraries(2DGameFramework ${boost_libs})
-target_link_libraries(2DGameFramework -Wall -lpthread -lws2_32)
-target_link_libraries(2DGameFramework ${CMAKE_SOURCE_DIR}/lib/libthor-s.a)

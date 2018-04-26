@@ -22,6 +22,10 @@ public:
 
     virtual void handleInput();
 
+    virtual C_BaseState *get_current_state();
+
+    virtual void update_state(sf::Event &p_event);
+
 protected:
     std::vector<C_BaseState *> m_state_list;
 };

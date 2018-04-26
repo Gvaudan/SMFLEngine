@@ -2,7 +2,6 @@
 // Created by David on 22/04/2018.
 //
 
-#include <utility>
 #include "C_BaseState.hh"
 
 const std::string &C_BaseState::get_state_id() const {
@@ -15,4 +14,16 @@ const thor::ActionMap<std::string> &C_BaseState::get_action_map() const {
 
 void C_BaseState::push_action(std::string p_name, thor::Action p_action) {
     m_action_map[p_name] = std::move(p_action);
+}
+
+bool C_BaseState::is_cancelable() const {
+    return m_is_cancelable;
+}
+
+void C_BaseState::push_event(sf::Event &p_event) {
+    m_action_map.pushEvent(p_event);
+}
+
+void C_BaseState::init_actions() {
+
 }
