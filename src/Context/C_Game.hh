@@ -16,37 +16,40 @@
 
 #include "C_World.hh"
 #include <boost/log/trivial.hpp>
+#include <Thor/Resources.hpp>
 
 class C_Game : public TemplateSingleton<C_Game> {
 public:
-  C_Game();
-  bool init();
+    C_Game();
 
-  void run();
+    bool init();
+
+    void run();
 
 private:
-  void update();
+    void update();
 
-  void update_static(sf::Time p_elapsed_time);
+    void update_static(sf::Time p_elapsed_time);
 
-  void render();
+    void render();
 
-  void handleEvent();
+    void handleEvent();
 
-  void exit();
+    void exit();
 
-  void clean();
+    void clean();
 
-  sf::Font mFont;
-  sf::Text mStatisticsText;
+    sf::Font mFont;
+    sf::Text mStatisticsText;
 
-  sf::RenderWindow m_window;
-  const sf::Time m_fps = sf::seconds(1.f / 60.f);
-  sf::Time mStatisticsUpdateTime;
-  std::size_t mStatisticsNumFrames;
+    sf::RenderWindow m_window;
+    const sf::Time m_fps = sf::seconds(1.f / 60.f);
+    sf::Time mStatisticsUpdateTime;
+    std::size_t mStatisticsNumFrames;
 
-  C_World m_world;
-  C_TestEntitie *m_test_entitie;
+    C_World m_world;
+    C_TestEntitie *m_test_entitie;
+
 };
 
 
