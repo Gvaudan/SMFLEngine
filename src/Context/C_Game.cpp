@@ -13,7 +13,9 @@ using namespace std;
 
 C_Game::C_Game()
         : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE, WINDOW_STYLE),
-          m_world(m_window), mFont(), mStatisticsText(), mStatisticsUpdateTime(), mStatisticsNumFrames(0) {}
+          m_world(m_window), mFont(), mStatisticsText(), mStatisticsUpdateTime(), mStatisticsNumFrames(0) {
+    m_window.setFramerateLimit(60);
+}
 
 void C_Game::run() {
     cout << __PRETTY_FUNCTION__ << endl;
@@ -22,14 +24,9 @@ void C_Game::run() {
 
     while (m_window.isOpen()) {
 
-        sf::Time elapsedTime = C_Timer::get_instance()->restart();
-        timeSinceLastUpdate += elapsedTime;
-        while (timeSinceLastUpdate > m_fps) {
-            timeSinceLastUpdate -= m_fps;
-            handleEvent();
-            update();
-        }
-        update_static(elapsedTime);
+        update();
+        handleEvent();
+        update_static(timeSinceLastUpdate);
         render();
     }
     C_Timer::get_instance()->stop();
@@ -53,6 +50,8 @@ bool C_Game::init() {
     C_TestStateMachine::get_instance()->push_state(m_test_entitie->get_current_state());
 
     C_GameStateMachine::get_instance()->push_state(new C_InGameState());
+
+    BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << " : FPS : " << m_fps.asMicroseconds();
 
     return false;
 }
