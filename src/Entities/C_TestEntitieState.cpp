@@ -40,7 +40,6 @@ void C_TestEntitieState::update() {
 }
 
 void C_TestEntitieState::update(C_TestEntitie &p_entitie, sf::Time p_eleapsed_time) {
-
 }
 
 void C_TestEntitieState::draw(sf::RenderTarget &target, sf::RenderStates states) {
@@ -60,7 +59,9 @@ void C_TestEntitieState::init_actions() {
   C_BaseState::init_actions();
 
   thor::Action on_move = (thor::Action(sf::Keyboard::Left, thor::Action::Hold)
-                          || thor::Action(sf::Keyboard::Right, thor::Action::Hold));
+                          || thor::Action(sf::Keyboard::Right, thor::Action::Hold)
+                          || thor::Action(sf::Keyboard::Up, thor::Action::Hold)
+                          || thor::Action(sf::Keyboard::Down, thor::Action::Hold));
 
   m_action_map["OnMove"] = on_move;
 }

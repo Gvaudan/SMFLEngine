@@ -45,5 +45,4 @@ protected:
   thor::ActionMap<std::string> m_action_map;
 };
 
-
 #endif //INC_2DGAMEFRAMEWORK_BASESTATE_HH

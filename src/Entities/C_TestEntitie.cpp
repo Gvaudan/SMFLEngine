@@ -24,26 +24,28 @@ void C_TestEntitie::draw(sf::RenderTarget &target, sf::RenderStates states) cons
 }
 
 void C_TestEntitie::on_move_left() {
-  float move = m_laste_time.asSeconds() * 100;
+  float move = m_laste_time.asSeconds() * 150;
   BOOST_LOG_TRIVIAL(trace) << std::to_string(move);
   this->move(-move, 0);
 }
 
 void C_TestEntitie::on_move_right() {
-  float move = m_laste_time.asSeconds() * 100;
+  float move = m_laste_time.asSeconds() * 150;
   BOOST_LOG_TRIVIAL(trace) << std::to_string(move);
   this->move(move, 0);
 }
 
 void C_TestEntitie::on_move_up() {
-  float move = m_laste_time.asSeconds() * 2;
-  this->move(0, move);
+  float move = m_laste_time.asSeconds() * 150;
+  BOOST_LOG_TRIVIAL(trace) << std::to_string(move);
+  this->move(0, -move);
 
 }
 
 void C_TestEntitie::on_move_down() {
-  float move = m_laste_time.asSeconds() * 2;
-  this->move(0, -move);
+  float move = m_laste_time.asSeconds() * 150;
+  BOOST_LOG_TRIVIAL(trace) << std::to_string(move);
+  this->move(0, move);
 }
 
 C_TestEntitieState *C_TestEntitie::get_current_state() const {

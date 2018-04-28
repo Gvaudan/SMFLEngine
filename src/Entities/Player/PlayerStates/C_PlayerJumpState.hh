@@ -1,0 +1,14 @@
+//
+// Created by David on 29/04/2018.
+//
+
+#ifndef INC_2DGAMEFRAMEWORK_C_PLAYERJUMPSTATE_HH
+#define INC_2DGAMEFRAMEWORK_C_PLAYERJUMPSTATE_HH
+
+
+class C_PlayerJumpState {
+
+};
+
+
+#endif //INC_2DGAMEFRAMEWORK_C_PLAYERJUMPSTATE_HH

@@ -17,6 +17,8 @@ file(GLOB sources_files
         src/Context/*.cpp
         src/Event/*.cpp
         src/Entities/*.cpp
+        src/Entities/*/*.cpp
+        src/Entities/*/*/*.cpp
         src/Graphic/*.cpp
         src/Input/*.cpp
         src/Physics/*.cpp

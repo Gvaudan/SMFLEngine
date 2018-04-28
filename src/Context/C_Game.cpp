@@ -14,7 +14,7 @@ using namespace std;
 C_Game::C_Game()
     : m_window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE, WINDOW_STYLE),
       m_world(m_window), mFont(), mStatisticsText(), mStatisticsUpdateTime(), mStatisticsNumFrames(0) {
-  m_window.setFramerateLimit(60);
+  //m_window.setFramerateLimit(60);
 }
 
 void C_Game::run() {

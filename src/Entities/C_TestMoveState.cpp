@@ -39,6 +39,14 @@ C_TestEntitieState *C_TestMoveState::handle_input(C_TestEntitie &p_entitie) {
   if (m_action_map.isActive("MoveRight")) {
     p_entitie.on_move_right();
   }
+
+  if (m_action_map.isActive("MoveUp")) {
+    p_entitie.on_move_up();
+  }
+
+  if (m_action_map.isActive("MoveDown")) {
+    p_entitie.on_move_down();
+  }
   return nullptr;
 }
 
@@ -74,4 +82,10 @@ void C_TestMoveState::init_actions() {
 
   thor::Action move_right(sf::Keyboard::Right, thor::Action::Hold);
   m_action_map["MoveRight"] = move_right;
+
+  thor::Action move_up(sf::Keyboard::Up, thor::Action::Hold);
+  m_action_map["MoveUp"] = move_up;
+
+  thor::Action move_down(sf::Keyboard::Down, thor::Action::Hold);
+  m_action_map["MoveDown"] = move_down;
 }
