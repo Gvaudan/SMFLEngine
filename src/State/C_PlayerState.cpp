@@ -12,7 +12,7 @@ void C_PlayerState::update() {
 
 }
 
-void C_PlayerState::render() {
+void C_PlayerState::draw(sf::RenderTarget &target, sf::RenderStates states) {
 
 }
 
@@ -20,6 +20,6 @@ void C_PlayerState::on_start() {
 
 }
 
-void C_PlayerState::on_exit() {
+C_BaseState * C_PlayerState::on_exit() {
 
 }

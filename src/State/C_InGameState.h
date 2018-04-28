@@ -5,6 +5,7 @@
 #ifndef INC_2DGAMEFRAMEWORK_C_INGAMESTATE_H
 #define INC_2DGAMEFRAMEWORK_C_INGAMESTATE_H
 
+#include <SFML/Graphics/RenderTarget.hpp>
 #include "C_BaseState.hh"
 
 class C_InGameState  : public C_BaseState{
@@ -15,11 +16,13 @@ public:
 
     void update() override;
 
-    void render() override;
+  void update(sf::Time p_eleapsed_time) override;
+
+  void draw(sf::RenderTarget &target, sf::RenderStates states) override;
 
     void on_start() override;
 
-    void on_exit() override;
+    C_BaseState * on_exit() override;
 };
 
 

@@ -21,14 +21,18 @@ void C_GameStateMachine::update() {
     C_BaseStateMachine::update();
 }
 
-void C_GameStateMachine::render() {
-    C_BaseStateMachine::render();
+void C_GameStateMachine::update(sf::Time p_eleapsed_time) {
+
+}
+
+void C_GameStateMachine::draw(sf::RenderTarget &target, sf::RenderStates &states) {
+    C_BaseStateMachine::draw(target, states);
 }
 
 void C_GameStateMachine::handleInput() {
     C_BaseStateMachine::handleInput();
 }
 
-void C_GameStateMachine::update_state(sf::Event &p_event) {
-    C_BaseStateMachine::update_state(p_event);
+void C_GameStateMachine::update_state_event(sf::Event &p_event) {
+  C_BaseStateMachine::update_state_event(p_event);
 }

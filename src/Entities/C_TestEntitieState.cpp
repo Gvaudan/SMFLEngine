@@ -3,56 +3,70 @@
 //
 
 #include "C_TestEntitieState.hh"
+#include "C_TestEntitie.hh"
 #include <boost/log/trivial.hpp>
 
-void C_TestEntitieState::handleInput() {
-    if (m_action_map.isActive("MoveLeft")) {
-        BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << ": MoveLeft";
-        m_entitie->on_move_left();
-    }
+C_TestEntitieState::C_TestEntitieState() {
+  m_state_id = "TestEntitieState";
+  init_actions();
+}
 
-    if (m_action_map.isActive("MoveRight")) {
-        BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << ": MoveRight";
-        m_entitie->on_move_right();
-    }
-    m_action_map.clearEvents();
+C_TestEntitieState::C_TestEntitieState(C_TestEntitie *p_entitie) {
+  m_state_id = "TestEntitieState";
+  init_actions();
+}
+
+void C_TestEntitieState::handleInput() {
+  if (m_action_map.isActive("MoveLeft")) {
+    m_entitie->on_move_left();
+  }
+
+  if (m_action_map.isActive("MoveRight")) {
+    m_entitie->on_move_right();
+  }
+  m_action_map.clearEvents();
+}
+
+C_TestEntitieState *C_TestEntitieState::handle_input(C_TestEntitie &p_entitie) {
+  if (m_action_map.isActive("OnMove")) {
+    return new C_TestMoveState();
+  }
+  m_action_map.clearEvents();
+  return nullptr;
 }
 
 void C_TestEntitieState::update() {
 
 }
 
-void C_TestEntitieState::render() {
+void C_TestEntitieState::update(C_TestEntitie &p_entitie, sf::Time p_eleapsed_time) {
+
+}
+
+void C_TestEntitieState::draw(sf::RenderTarget &target, sf::RenderStates states) {
 
 }
 
 void C_TestEntitieState::on_start() {
-    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__;
+  BOOST_LOG_TRIVIAL(info) << "TestSprint is hiddle";
 }
 
-void C_TestEntitieState::on_exit() {
-    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__;
-}
-
-C_TestEntitieState::C_TestEntitieState() {
-    m_state_id = "TestEntitieState";
-    init_actions();
-}
-
-C_TestEntitieState::C_TestEntitieState(C_TestEntitie *p_entitie) :
-        m_entitie(p_entitie) {
-    m_state_id = "TestEntitieState";
-    init_actions();
+C_BaseState *C_TestEntitieState::on_exit() {
+  BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__;
 }
 
 void C_TestEntitieState::init_actions() {
-    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__;
-    C_BaseState::init_actions();
+  BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__;
+  C_BaseState::init_actions();
 
-    thor::Action move_left(sf::Keyboard::Q, thor::Action::Hold);
-    m_action_map["MoveLeft"] = move_left;
+  thor::Action on_move = (thor::Action(sf::Keyboard::Left, thor::Action::Hold)
+                          || thor::Action(sf::Keyboard::Right, thor::Action::Hold));
 
-    thor::Action move_right(sf::Keyboard::D, thor::Action::Hold);
-    m_action_map["MoveRight"] = move_right;
+  m_action_map["OnMove"] = on_move;
+}
 
+void C_TestEntitieState::update(sf::Time p_eleapsed_time) {}
+
+C_TestEntitieState *C_TestEntitieState::handle_input() {
+  return nullptr;
 }

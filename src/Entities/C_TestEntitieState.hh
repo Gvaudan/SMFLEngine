@@ -5,30 +5,39 @@
 #ifndef INC_2DGAMEFRAMEWORK_C_TESTENTITIESTATE_HH
 #define INC_2DGAMEFRAMEWORK_C_TESTENTITIESTATE_HH
 
-
-#include "C_TestEntitie.hh"
 #include "../State/C_BaseState.hh"
+
+class C_TestEntitie;
 
 class C_TestEntitieState : public C_BaseState {
 public:
-    C_TestEntitieState();
+  C_TestEntitieState();
 
-    C_TestEntitieState(C_TestEntitie *p_entitie);
+  explicit C_TestEntitieState(C_TestEntitie *p_entitie);
 
-    void handleInput() override;
+  void handleInput() override;
 
-    void update() override;
+  virtual C_TestEntitieState *handle_input();
 
-    void render() override;
+  virtual C_TestEntitieState *handle_input(C_TestEntitie &p_entitie);
 
-    void on_start() override;
+  void update() override;
 
-    void on_exit() override;
+  virtual void update(C_TestEntitie &p_entitie, sf::Time p_eleapsed_time);
+
+  void update(sf::Time p_eleapsed_time) override;
+
+  void draw(sf::RenderTarget &target, sf::RenderStates states) override;
+
+  void on_start() override;
+
+  C_BaseState *on_exit() override;
+
+protected:
+  void init_actions() override;
 
 private:
-    void init_actions() override;
-
-    C_TestEntitie *m_entitie;
+  C_TestEntitie *m_entitie;
 };
 
 

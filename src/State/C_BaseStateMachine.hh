@@ -10,24 +10,26 @@
 
 class C_BaseStateMachine {
 public:
-    virtual void push_state(C_BaseState *p_state);
+  virtual void push_state(C_BaseState *p_state);
 
-    virtual void change_state(C_BaseState *p_state);
+  virtual void change_state(C_BaseState *p_state);
 
-    virtual void pop_state();
+  virtual void pop_state();
 
-    virtual void update();
+  virtual void update();
 
-    virtual void render();
+  virtual void update(sf::Time p_eleapsed_time);
 
-    virtual void handleInput();
+  virtual void draw(sf::RenderTarget &target, sf::RenderStates &states);
 
-    virtual C_BaseState *get_current_state();
+  virtual void handleInput();
 
-    virtual void update_state(sf::Event &p_event);
+  virtual C_BaseState *get_current_state();
+
+  virtual void update_state_event(sf::Event &p_event);
 
 protected:
-    std::vector<C_BaseState *> m_state_list;
+  std::vector<C_BaseState *> m_state_list;
 };
 
 

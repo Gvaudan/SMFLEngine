@@ -28,7 +28,7 @@ public:
 
 private:
     void update();
-
+    void update(sf::Time p_elapsed_time);
     void update_static(sf::Time p_elapsed_time);
 
     void render();
@@ -49,6 +49,8 @@ private:
 
     C_World m_world;
     C_TestEntitie *m_test_entitie;
+
+    bool m_toggle_FPS;
 
     std::shared_ptr<sf::Font> m_font;
 

@@ -22,12 +22,13 @@ public:
     void pop_state() override;
 
     void update() override;
+    void update(sf::Time p_eleapsed_time);
 
-    void render() override;
+    void draw(sf::RenderTarget &target, sf::RenderStates &states) override;
 
     void handleInput() override;
 
-    void update_state(sf::Event &p_event) override;
+    void update_state_event(sf::Event &p_event) override;
 };
 
 
