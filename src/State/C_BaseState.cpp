@@ -31,3 +31,7 @@ void C_BaseState::push_event(sf::Event &p_event) {
 void C_BaseState::init_actions() {
 
 }
+
+void C_BaseState::clean_event() {
+  m_action_map.clearEvents();
+}

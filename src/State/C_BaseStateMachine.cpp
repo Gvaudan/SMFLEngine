@@ -34,7 +34,7 @@ void C_BaseStateMachine::pop_state() {
     delete m_state_list.back();
     m_state_list.pop_back();
 
-    if(!m_state_list.empty()) {m_state_list.back()->on_start();}
+    if (!m_state_list.empty()) { m_state_list.back()->on_start(); }
   }
   BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : END";
 }
@@ -77,6 +77,14 @@ C_BaseState *C_BaseStateMachine::get_current_state() {
 void C_BaseStateMachine::update_state_event(sf::Event &p_event) {
   if (!m_state_list.empty()) {
     m_state_list.back()->push_event(p_event);
+  } else {
+    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : NO STATE";
+  }
+}
+
+void C_BaseStateMachine::clear_state_event() {
+  if (!m_state_list.empty()) {
+    m_state_list.back()->get_action_map().clearEvents();
   } else {
     BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : NO STATE";
   }

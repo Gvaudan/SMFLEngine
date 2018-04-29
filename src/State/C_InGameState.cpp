@@ -50,3 +50,11 @@ C_InGameState::C_InGameState() {
   m_action_map["exit"] = exit;
   m_action_map["toggleFPS"] = toggleFPS;
 }
+
+C_BaseState *C_InGameState::update_state(sf::Time p_eleapsed_time, C_Entity &p_entity) {
+  return nullptr;
+}
+
+void C_InGameState::draw_state(sf::RenderTarget &p_target, sf::RenderStates p_states, C_Entity &p_entity) {
+
+}

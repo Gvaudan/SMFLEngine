@@ -15,6 +15,8 @@ file(GLOB sources_files
         src/main.cpp
         src/Clock/*.cpp
         src/Context/*.cpp
+        src/Context/*.cpp
+        src/Debug/*.cpp
         src/Event/*.cpp
         src/Entities/*.cpp
         src/Entities/*/*.cpp

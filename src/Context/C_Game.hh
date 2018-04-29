@@ -5,54 +5,60 @@
 #ifndef INC_2DGAMEFRAMEWORK_GAME_HH
 #define INC_2DGAMEFRAMEWORK_GAME_HH
 
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-//#include "ToString.h"
-#include "TemplateSingleton.hh"
 #include "settings.h"
+#include "TemplateSingleton.hh"
+
 #include "../Event/C_EventHandler.hh"
 #include "../Graphic/C_TextureHolder.hh"
 #include "../Entities/C_TestEntitie.hh"
 
 #include "C_World.hh"
+#include "../Entities/Player/C_Player.hh"
+
 #include <boost/log/trivial.hpp>
 #include <Thor/Resources.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
+
 
 class C_Game : public TemplateSingleton<C_Game> {
 public:
-    C_Game();
+  C_Game();
 
-    bool init();
+  bool init();
 
-    void run();
+  void run();
 
 private:
-    void update();
-    void update(sf::Time p_elapsed_time);
-    void update_static(sf::Time p_elapsed_time);
+  void update();
 
-    void render();
+  void update(sf::Time p_elapsed_time);
 
-    void handleEvent();
+  void update_static(sf::Time p_elapsed_time);
 
-    void exit();
+  void render();
 
-    void clean();
+  void handleEvent();
 
-    sf::Font mFont;
-    sf::Text mStatisticsText;
+  void exit();
 
-    sf::RenderWindow m_window;
-    const sf::Time m_fps = sf::seconds(1.f / 60.f);
-    sf::Time mStatisticsUpdateTime;
-    std::size_t mStatisticsNumFrames;
+  void clean();
 
-    C_World m_world;
-    C_TestEntitie *m_test_entitie;
+  sf::Font mFont;
+  sf::Text mStatisticsText;
 
-    bool m_toggle_FPS;
+  sf::RenderWindow m_window;
+  const sf::Time m_fps = sf::seconds(1.f / 60.f);
+  sf::Time mStatisticsUpdateTime;
+  std::size_t mStatisticsNumFrames;
 
-    std::shared_ptr<sf::Font> m_font;
+  C_World m_world;
+  C_Player m_player;
+  C_TestEntitie *m_test_entitie;
+
+  bool m_toggle_FPS;
+
+  std::shared_ptr<sf::Font> m_font;
 
 };
 

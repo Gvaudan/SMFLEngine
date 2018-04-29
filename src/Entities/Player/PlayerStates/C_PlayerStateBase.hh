@@ -7,7 +7,12 @@
 
 #include "../../../State/C_BaseState.hh"
 
-class C_PlayerStateBase : C_BaseState{
+class C_Player;
+
+class C_PlayerStateBase : public C_BaseState {
+public:
+  virtual C_PlayerStateBase *handle_input(C_Player &p_player) = 0;
+  virtual void init_action() = 0;
 
 };
 

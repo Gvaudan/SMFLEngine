@@ -71,3 +71,11 @@ void C_TestEntitieState::update(sf::Time p_eleapsed_time) {}
 C_TestEntitieState *C_TestEntitieState::handle_input() {
   return nullptr;
 }
+
+C_BaseState *C_TestEntitieState::update_state(sf::Time p_eleapsed_time, C_Entity &p_entity) {
+  return nullptr;
+}
+
+void C_TestEntitieState::draw_state(sf::RenderTarget &p_target, sf::RenderStates p_states, C_Entity &p_entity) {
+
+}

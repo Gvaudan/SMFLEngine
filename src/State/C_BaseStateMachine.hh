@@ -28,6 +28,8 @@ public:
 
     virtual void update_state_event(sf::Event &p_event);
 
+    virtual void clear_state_event();
+
 protected:
     std::vector<C_BaseState *> m_state_list;
 };

@@ -25,6 +25,10 @@ public:
 
   virtual void update(C_TestEntitie &p_entitie, sf::Time p_eleapsed_time);
 
+  C_BaseState *update_state(sf::Time p_eleapsed_time, C_Entity &p_entity) override;
+
+  void draw_state(sf::RenderTarget &p_target, sf::RenderStates p_states, C_Entity &p_entity) override;
+
   void update(sf::Time p_eleapsed_time) override;
 
   void draw(sf::RenderTarget &target, sf::RenderStates states) override;

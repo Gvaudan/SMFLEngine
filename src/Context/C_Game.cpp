@@ -42,7 +42,6 @@ void C_Game::run() {
       time += dt;
     }
 
-    //update();
     update(timeSinceLastUpdate);
     handleEvent();
     render();
@@ -59,6 +58,8 @@ bool C_Game::init() {
   mStatisticsText.setCharacterSize(24); // in pixels, not points!
   mStatisticsText.setFillColor(sf::Color::Red);
 
+  sf::Joystick::update();
+
   C_EntityFactory::get_instance()->RegisterType("test-sprite", new C_TestEntityCreator());
   m_test_entitie = (C_TestEntitie *) C_EntityFactory::get_instance()->Create("test-sprite");
 
@@ -70,18 +71,12 @@ bool C_Game::init() {
 }
 
 void C_Game::update() {
-  auto state = m_test_entitie->get_current_state();
-  if (state != nullptr) {
-    state->get_action_map().clearActions();
-    state->get_action_map().update(m_window);
-  }
 }
 
 void C_Game::update(sf::Time p_elapsed_time) {
   C_GameStateMachine::get_instance()->update(p_elapsed_time);
-  m_test_entitie->update(p_elapsed_time);
 
-  m_test_entitie->getPosition();
+  m_player.update(p_elapsed_time);
 
   update_static(p_elapsed_time);
 }
@@ -105,14 +100,15 @@ void C_Game::render() {
   m_window.clear();
 
   m_window.setView(m_window.getDefaultView());
-  m_test_entitie->draw(m_window, sf::RenderStates::Default);
+  //m_test_entitie->draw(m_window, sf::RenderStates::Default);
+  m_player.draw(m_window, sf::RenderStates::Default);
   m_window.draw(mStatisticsText);
   m_window.display();
 }
 
 void C_Game::handleEvent() {
   sf::Event event;
-  C_EventHandler::get_instance()->process_event(event, &m_window, (*m_test_entitie));
+  C_EventHandler::get_instance()->process_event(event, &m_window, m_player);
 }
 
 void C_Game::exit() {
