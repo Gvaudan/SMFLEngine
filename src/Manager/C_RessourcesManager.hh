@@ -21,7 +21,10 @@ public:
 
     std::shared_ptr<sf::Font> load_font(std::string p_id, std::string p_path);
 
+    const sf::Font get_fond(std::string p_id) ;
+
 private:
+    std::map<std::string, std::shared_ptr<sf::Font>> m_font_map;
     thor::ResourceHolder<sf::Texture, std::string> m_holder_texture;
     thor::ResourceHolder<sf::Font, std::string, thor::Resources::RefCounted> m_holder_font;
 };

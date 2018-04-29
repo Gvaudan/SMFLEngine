@@ -14,6 +14,7 @@
 
 #include "C_World.hh"
 #include "../Entities/Player/C_Player.hh"
+#include "../Debug/C_DebugScreen.hh"
 
 #include <boost/log/trivial.hpp>
 #include <Thor/Resources.hpp>
@@ -57,7 +58,7 @@ private:
   C_TestEntitie *m_test_entitie;
 
   bool m_toggle_FPS;
-
+  C_DebugScreen* m_debug;
   std::shared_ptr<sf::Font> m_font;
 
 };

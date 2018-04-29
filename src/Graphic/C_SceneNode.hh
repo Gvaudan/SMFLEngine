@@ -20,11 +20,11 @@ public:
 public:
   C_SceneNode();
 
-  void attachChild(Ptr child);
+  virtual void attachChild(Ptr child);
 
-  Ptr detachChild(const C_SceneNode &node);
+  virtual Ptr detachChild(const C_SceneNode &node);
 
-    virtual void update(sf::Time dt);
+  virtual void update(sf::Time dt);
 
   sf::Vector2f getWorldPosition() const;
 

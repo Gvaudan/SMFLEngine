@@ -50,22 +50,33 @@ void C_Game::run() {
 }
 
 bool C_Game::init() {
-  BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__;
-
   m_font = C_RessourcesManager::get_instance()->load_font("FPS", "ressources/fonts/8-Bit Madness.ttf");
+
   mFont = *m_font.get();
   mStatisticsText.setFont(mFont);
   mStatisticsText.setCharacterSize(24); // in pixels, not points!
   mStatisticsText.setFillColor(sf::Color::Red);
 
+  m_debug = new C_DebugScreen();
+
+
   sf::Joystick::update();
+  bool connected = sf::Joystick::isConnected(0);
+  if (connected) {
+    unsigned int buttons = sf::Joystick::getButtonCount(0);
+    auto id = sf::Joystick::getIdentification(0);
+
+    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : Joystick is connected";
+    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : " << to_string(buttons) << " buttons";
+    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : product name : " << id.name.toAnsiString();
+    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : product id : " << to_string(id.productId);
+    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : vendor vendor id : " << to_string(id.vendorId);
+  }
 
   C_EntityFactory::get_instance()->RegisterType("test-sprite", new C_TestEntityCreator());
   m_test_entitie = (C_TestEntitie *) C_EntityFactory::get_instance()->Create("test-sprite");
 
   C_GameStateMachine::get_instance()->push_state(new C_InGameState());
-
-  BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << " : FPS : " << m_fps.asMicroseconds();
 
   return false;
 }
@@ -77,8 +88,8 @@ void C_Game::update(sf::Time p_elapsed_time) {
   C_GameStateMachine::get_instance()->update(p_elapsed_time);
 
   m_player.update(p_elapsed_time);
-
   update_static(p_elapsed_time);
+  m_debug->update(p_elapsed_time);
 }
 
 void C_Game::update_static(sf::Time p_elapsed_time) {
@@ -102,7 +113,8 @@ void C_Game::render() {
   m_window.setView(m_window.getDefaultView());
   //m_test_entitie->draw(m_window, sf::RenderStates::Default);
   m_player.draw(m_window, sf::RenderStates::Default);
-  m_window.draw(mStatisticsText);
+  //m_window.draw(mStatisticsText);
+  m_debug->draw(m_window, sf::RenderStates::Default);
   m_window.display();
 }
 

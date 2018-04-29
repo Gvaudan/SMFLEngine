@@ -1,0 +1,14 @@
+//
+// Created by David on 29/04/2018.
+//
+
+#ifndef INC_2DGAMEFRAMEWORK_C_PLAYERVECTOR_HH
+#define INC_2DGAMEFRAMEWORK_C_PLAYERVECTOR_HH
+
+
+class C_PlayerVector {
+
+};
+
+
+#endif //INC_2DGAMEFRAMEWORK_C_PLAYERVECTOR_HH

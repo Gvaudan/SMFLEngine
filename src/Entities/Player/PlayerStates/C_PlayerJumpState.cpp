@@ -4,13 +4,14 @@
 
 #include <boost/log/trivial.hpp>
 #include "C_PlayerJumpState.hh"
+#include "C_PlayerNeutralState.hh"
 
 
 C_PlayerJumpState::C_PlayerJumpState() { m_state_id = "PlayerJumpState"; }
 
 
 C_PlayerStateBase *C_PlayerJumpState::handle_input(C_Player &p_player) {
-  return nullptr;
+  return new C_PlayerNeutralState();
 }
 
 void C_PlayerJumpState::init_action() {
@@ -43,7 +44,7 @@ void C_PlayerJumpState::draw(sf::RenderTarget &target, sf::RenderStates states) 
 }
 
 void C_PlayerJumpState::on_start() {
-  BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << "Player in NeutralState";
+  BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << "Player is Jumping";
 
 }
 
