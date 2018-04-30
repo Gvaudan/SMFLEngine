@@ -10,4 +10,13 @@
 #define WINDOW_TITLE "2DGameFrameWork"
 #define WINDOW_STYLE sf::Style::Default
 
+#define RESSOURCES_ROOT "ressources/"
+#define FONTS_LEVEL_PATH "ressources/fonts/"
+#define FONTS_SPRITES_PATH "ressources/sprites/"
+#define GAME_SETTINGS_FILE "ressources/GameSettings.json"
+
+struct s_settings {
+};
+
+
 #endif //INC_2DGAMEFRAMEWORK_SETTINGS_H

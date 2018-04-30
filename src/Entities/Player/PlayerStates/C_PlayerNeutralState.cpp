@@ -15,22 +15,21 @@ C_PlayerNeutralState::C_PlayerNeutralState() {
 
 void C_PlayerNeutralState::init_action() {
 
-  thor::JoystickAxis left_stick_x(0, sf::Joystick::X, 30.0f, true);
 
-  thor::JoystickAxis left_stick_y(0, sf::Joystick::Y, 30.0f, true);
+  thor::JoystickAxis LStick_left(0, sf::Joystick::X, (-25.f), false);
+  thor::JoystickAxis LStick_right(0, sf::Joystick::X, 25.f, true);
+  thor::JoystickAxis LStick_up(0, sf::Joystick::Y, -25.f, false);
+  thor::JoystickAxis LStick_down(0, sf::Joystick::Y, 25.f, true);
 
+  thor::Action left_stick_move = thor::Action(LStick_left)
+                                 || thor::Action(LStick_right)
+                                 || thor::Action(LStick_up)
+                                 || thor::Action(LStick_down);
 
-  thor::Action on_joystick_move = (thor::Action(left_stick_x) || thor::Action(left_stick_y));
+  m_action_map["OnMove"] = left_stick_move;
 
-  thor::Action on_move = (thor::Action(sf::Keyboard::Left, thor::Action::Hold)
-                          || thor::Action(sf::Keyboard::Right, thor::Action::Hold)
-                          || thor::Action(sf::Keyboard::Up, thor::Action::Hold)
-                          || thor::Action(sf::Keyboard::Down, thor::Action::Hold)
-                          || on_joystick_move);
-
-  m_action_map["OnMove"] = on_move;
-  thor::Action on_jump(sf::Keyboard::Space, thor::Action::Hold);
-  m_action_map["OnJump"] = on_jump;
+  thor::Action move_jump(thor::JoystickButton(0,0), thor::Action::ReleaseOnce);
+  m_action_map["OnJump"] = move_jump;
 
 }
 

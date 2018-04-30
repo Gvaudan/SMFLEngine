@@ -9,7 +9,7 @@ set(BOOST_LIBRARYDIR C:/DEV/boost/lib)
 include_directories(${BOOST_INCLUDEDIR})
 link_directories(${BOOST_LIBRARYDIR})
 include_directories(src/Tools/)
-
+include_directories(src/headers/)
 add_library(libthor STATIC IMPORTED)
 file(GLOB sources_files
         src/main.cpp
@@ -24,11 +24,9 @@ file(GLOB sources_files
         src/Graphic/*.cpp
         src/Input/*.cpp
         src/Physics/*.cpp
-        src/Player/*.cpp
         src/Manager/*.cpp
         src/State/*.cpp
         )
-
 
 add_executable(2DGameFramework ${sources_files} )
 

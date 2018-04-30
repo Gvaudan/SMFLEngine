@@ -5,7 +5,7 @@
 #ifndef INC_2DGAMEFRAMEWORK_GAME_HH
 #define INC_2DGAMEFRAMEWORK_GAME_HH
 
-#include "settings.h"
+#include "../headers/settings.h"
 #include "TemplateSingleton.hh"
 
 #include "../Event/C_EventHandler.hh"

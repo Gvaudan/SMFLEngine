@@ -14,6 +14,48 @@ C_PlayerMoveState::C_PlayerMoveState() {
   init_action();
 }
 
+void C_PlayerMoveState::init_action() {
+
+  thor::JoystickAxis LStick_left(0, sf::Joystick::X, (-25.f), false);
+  thor::JoystickAxis LStick_right(0, sf::Joystick::X, 25.f, true);
+  thor::JoystickAxis LStick_up(0, sf::Joystick::Y, -25.f, false);
+  thor::JoystickAxis LStick_down(0, sf::Joystick::Y, 25.f, true);
+
+
+  thor::Action left_stick_move = thor::Action(LStick_left)
+                                 || thor::Action(LStick_right)
+                                 || thor::Action(LStick_up)
+                                 || thor::Action(LStick_down);
+
+  thor::Action on_LStick_left(LStick_left);
+  thor::Action on_LStick_right(LStick_right);
+  thor::Action on_LStick_up(LStick_up);
+  thor::Action on_LStick_down(LStick_down);
+
+  thor::Action left_sitck_move = on_LStick_left
+                                 || on_LStick_right
+                                 || on_LStick_up
+                                 || on_LStick_down;
+
+  thor::Action left_stick_stop = !on_LStick_left
+                                 && !on_LStick_right
+                                 && !on_LStick_up
+                                 && !on_LStick_down;
+
+  m_action_map["StopMove"] = left_stick_stop;
+
+  thor::Action move_left(sf::Keyboard::Left, thor::Action::Hold);
+  m_action_map["MoveLeft"] = on_LStick_left;
+
+  thor::Action move_right(sf::Keyboard::Right, thor::Action::Hold);
+  m_action_map["MoveRight"] = on_LStick_right;
+
+
+  thor::Action move_jump(thor::JoystickButton(0, 0), thor::Action::ReleaseOnce);
+  m_action_map["Jump"] = move_jump;
+
+}
+
 C_PlayerStateBase *C_PlayerMoveState::handle_input(C_Player &p_player) {
 
   if (m_action_map.isActive("StopMove")) {
@@ -31,34 +73,6 @@ C_PlayerStateBase *C_PlayerMoveState::handle_input(C_Player &p_player) {
   }
 
   return nullptr;
-}
-
-void C_PlayerMoveState::init_action() {
-
-  thor::JoystickAxis left_stick_x(0, sf::Joystick::X, 15.0f, false);
-  thor::JoystickAxis left_stick_y(0, sf::Joystick::Y, 15.0f, false);
-
-  thor::Action on_joystick_move = (thor::Action(left_stick_x) || thor::Action(left_stick_y));
-
-  thor::Action stop_move = thor::Action(sf::Keyboard::Left, thor::Action::ReleaseOnce)
-                           || thor::Action(sf::Keyboard::Right, thor::Action::ReleaseOnce)
-                           || thor::Action(sf::Keyboard::Up, thor::Action::ReleaseOnce)
-                           || thor::Action(sf::Keyboard::Down, thor::Action::ReleaseOnce)
-                           || thor::Action(left_stick_x)
-                           || thor::Action(left_stick_y);
-
-  m_action_map["StopMove"] = stop_move;
-
-  thor::Action move_left(sf::Keyboard::Left, thor::Action::Hold);
-  m_action_map["MoveLeft"] = move_left;
-
-  thor::Action move_right(sf::Keyboard::Right, thor::Action::Hold);
-  m_action_map["MoveRight"] = move_right;
-
-
-  thor::Action move_jump(sf::Keyboard::Space, thor::Action::PressOnce);
-  m_action_map["Jump"] = move_jump;
-
 }
 
 void C_PlayerMoveState::handleInput() {

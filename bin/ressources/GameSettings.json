@@ -1,0 +1,112 @@
+{
+    "Control": {
+        "controller": [
+            {
+                "name": "Controller (Xbox One For Windows)",
+                "mapping": [
+                    "LStick",
+                    "RStick",
+                    "LTrigger",
+                    "RTrigger",
+                    "DPad",
+                    "Start",
+                    "Select",
+                    "LR",
+                    "LB",
+                    "A",
+                    "B",
+                    "X",
+                    "Y"
+                ]
+            }
+        ],
+        "keyboard": {}
+    },
+    "Player": {
+        "Stats": {
+            "maxLife": 100,
+            "LowAttackDammage": 10,
+            "HighAttackDammage": 20,
+            "SuperAttackDammage": 40,
+            "JumpVelocity": 250,
+            "MoveVelocity": 150
+        },
+        "Actions": [
+            {
+                "action_name": "Move",
+                "new_state_id": "OnMove",
+                "new_stats": null,
+                "controller_input": "LStick"
+            },
+            {
+                "action_name": "Jump",
+                "new_state_id": "OnJump",
+                "new_stats": null,
+                "controller_input": "A"
+            },
+            {
+                "action_name": "LowAttack",
+                "new_state_id": "OnLowAttack",
+                "new_stats": null,
+                "controller_input": "X"
+            },
+            {
+                "action_name": "HighAttack",
+                "new_state_id": "OnHighAttack",
+                "new_stats": null,
+                "controller_input": "Y"
+            },
+            {
+                "action_name": "SuperAttack",
+                "new_state_id": "OnSuperAttack",
+                "new_stats": null,
+                "controller_input": "B"
+            }
+        ],
+        "States": [
+            {
+                "id": "Neutral",
+                "next_state_id": "",
+                "overloadable": true,
+                "reloadable": 0
+            },
+            {
+                "id": "OnMove",
+                "next_state_id": "Neutral",
+                "overloadable": true,
+                "reloadable": 0
+            },
+            {
+                "id": "OnJump",
+                "next_state_id": "Neutral",
+                "overloadable": true,
+                "reloadable": 1
+            },
+            {
+                "id": "OnLowAttack",
+                "next_state_id": "Neutral",
+                "overloadable": true,
+                "reloadable": 1
+            },
+            {
+                "id": "OnHighAttack",
+                "next_state_id": "Neutral",
+                "overloadable": true,
+                "reloadable": 1
+            },
+            {
+                "id": "OnSuperAttack",
+                "next_state_id": "Neutral",
+                "overloadable": true,
+                "reloadable": 1
+            }
+        ]
+    },
+    "Game": {
+        "Window": {
+            "Height": 480,
+            "Width": 640,
+            "FrameRate": 60
+        }
+    }
+}
