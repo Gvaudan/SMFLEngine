@@ -31,6 +31,8 @@ public:
 
   const sf::Font get_fond(std::string p_id);
 
+  const pt::ptree get_setting(std::string p_id);
+
   bool load_settins_file();
 
   C_RessourcesManager();

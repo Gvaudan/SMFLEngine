@@ -55,3 +55,11 @@ bool C_RessourcesManager::init_loader() {
   m_map_settings["SETTINGS"] = item;
   return true;
 }
+
+const pt::ptree C_RessourcesManager::get_setting(std::string p_id) {
+  if (!m_map_settings.empty()) {
+    auto setting = m_map_settings[p_id];
+    return setting;
+  }
+  return m_map_settings[p_id];
+}
