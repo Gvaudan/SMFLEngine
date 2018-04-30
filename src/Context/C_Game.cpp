@@ -51,10 +51,6 @@ void C_Game::run() {
 
 bool C_Game::init() {
   C_RessourcesManager::get_instance()->init_loader();
-  auto settings_node = C_RessourcesManager::get_instance()->get_setting("SETTINGS");
-  settings_node.get<int>("", 0);
-
-  BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << (settings_node.get<std::string>("version", ""));
 
   m_font = C_RessourcesManager::get_instance()->load_font("FPS", "ressources/fonts/8-Bit Madness.ttf");
   mFont = *m_font.get();
