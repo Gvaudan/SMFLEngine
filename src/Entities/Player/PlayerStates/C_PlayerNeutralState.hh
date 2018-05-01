@@ -33,6 +33,9 @@ public:
 protected:
   void init_action() override;
 
+  void init_actions() override;
+
+  void build_animiations() override;
 };
 
 

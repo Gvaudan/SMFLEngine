@@ -8,6 +8,7 @@
 
 #include "../Input/C_InputHandler.hh"
 #include <Thor/Input.hpp>
+#include <Thor/Animations.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 
@@ -48,12 +49,15 @@ public:
 
 protected:
   virtual void init_actions();
-
+  virtual void build_animiations();
   bool m_is_cancelable = true;
   bool m_is_reloadable = true;
 
   std::string m_state_id;
   thor::ActionMap<std::string> m_action_map;
+  thor::Animator<C_Entity, std::string> m_animator;
+  std::vector<thor::FrameAnimation> m_animations;
+
 };
 
 #endif //INC_2DGAMEFRAMEWORK_BASESTATE_HH

@@ -84,3 +84,13 @@ void C_PlayerNeutralState::on_start() {
 C_BaseState *C_PlayerNeutralState::on_exit() {
   return nullptr;
 }
+
+void C_PlayerNeutralState::init_actions() {
+  C_BaseState::init_actions();
+  thor::FrameAnimation animation;
+
+}
+
+void C_PlayerNeutralState::build_animiations() {
+  C_BaseState::build_animiations();
+}

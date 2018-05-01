@@ -46,8 +46,6 @@ void C_Player::update(sf::Time dt) {
 
   //Mise a jour de la boite de debug
   m_rectangle.setPosition(this->getPosition());
-  m_rectangle.setSize(this->getScale());
-  m_rectangle.setOrigin(this->getOrigin());
   m_rectangle.setRotation(this->getRotation());
 }
 
