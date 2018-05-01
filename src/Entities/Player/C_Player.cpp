@@ -42,6 +42,13 @@ void C_Player::update(sf::Time dt) {
       change_state(new_state);
     }
   }
+
+
+  //Mise a jour de la boite de debug
+  m_rectangle.setPosition(this->getPosition());
+  m_rectangle.setSize(this->getScale());
+  m_rectangle.setOrigin(this->getOrigin());
+  m_rectangle.setRotation(this->getRotation());
 }
 
 C_BaseState *C_Player::handle_state_input(C_Entity &p_entitie) {

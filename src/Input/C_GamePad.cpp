@@ -54,7 +54,10 @@ void C_GamePad::update_inputs() {
   if (m_is_connected && !sf::Joystick::isConnected(m_id)) {
     BOOST_LOG_TRIVIAL(warning) << "Gamepad disconnected";
     m_is_connected = false;
+    return;
   }
+  m_LStick.current_x = sf::Joystick::getAxisPosition(m_id, m_LStick.m_axis_x);
+  m_LStick.current_y = sf::Joystick::getAxisPosition(m_id, m_LStick.m_axis_y);
 }
 
 bool C_GamePad::init() {
@@ -167,5 +170,5 @@ unsigned int C_GamePad::get_RB() const {
 }
 
 C_GamePad::~C_GamePad() {
-BOOST_LOG_TRIVIAL(warning) << __PRETTY_FUNCTION__;
+  BOOST_LOG_TRIVIAL(warning) << __PRETTY_FUNCTION__;
 }
