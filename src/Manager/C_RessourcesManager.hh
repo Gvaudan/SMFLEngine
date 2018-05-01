@@ -9,10 +9,6 @@
 
 #include <Thor/Resources.hpp>
 #include <SFML/Graphics/Font.hpp>
-#include <TemplateSingleton.hh>
-
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
 
 namespace pt = boost::property_tree;
 
@@ -41,7 +37,7 @@ private:
   thor::ResourceLoader<pt::ptree> load_json_file(std::string p_path);
 
   std::map<std::string, std::shared_ptr<sf::Font>> m_font_map;
-  thor::ResourceHolder<sf::Texture, std::string> m_holder_texture;
+  thor::ResourceHolder<sf::Texture, std::string, thor::Resources::RefCounted> m_holder_texture;
   thor::ResourceHolder<sf::Font, std::string, thor::Resources::RefCounted> m_holder_font;
 
   std::map<std::string, pt::ptree> m_map_settings;

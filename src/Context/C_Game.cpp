@@ -72,6 +72,8 @@ bool C_Game::init() {
     BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : product name : " << id.name.toAnsiString();
     BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : product id : " << to_string(id.productId);
     BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : vendor vendor id : " << to_string(id.vendorId);
+  } else {
+    BOOST_LOG_TRIVIAL(warning) << __PRETTY_FUNCTION__ << " : No joystick connected";
   }
 
   C_EntityFactory::get_instance()->RegisterType("test-sprite", new C_TestEntityCreator());

@@ -5,43 +5,21 @@
 #ifndef INC_2DGAMEFRAMEWORK_C_GAMEPAD_HH
 #define INC_2DGAMEFRAMEWORK_C_GAMEPAD_HH
 
-#include <TemplateSingleton.hh>
+#include "settings.h"
+
 #include <Thor/Input.hpp>
 #include <SFML/Window/Joystick.hpp>
 
+namespace pt = boost::property_tree;
+
 namespace ControllerBind {
-
-  typedef enum s_stick_type {
-    LStick = '1',
-    RStick = '2',
-    LTrigger = '3',
-    RTrigger = '4',
-    DPad = '5',
-    A = '1',
-    B = '2',
-    X = '3',
-    Y = '4',
-    START = '5',
-    SELECT = '6',
-    LB = '7',
-    RB = '8'
-  } t_stick_type;
-
-  typedef struct s_gamepad_stick {
-    sf::Joystick::Axis m_axis_x;
-    sf::Joystick::Axis m_axis_y;
-    s_stick_type type;
-  } t_gamepad_stick;
-
-  typedef struct s_gamepad {
-    struct s_gamepad_stick;
-  } t_game_pad;
 
   class C_GamePad {
   public:
     C_GamePad();
+    C_GamePad(unsigned int p_id);
 
-    void bind_inputs();
+    void bind_inputs(pt::ptree &p_ptree);
 
     void update_inputs();
 
@@ -51,14 +29,29 @@ namespace ControllerBind {
 
     const t_gamepad_stick &get_DPad() const;
 
+    void on_connect();
+
+    void on_disconnect();
+
   private:
+    bool init();
+
+    bool init(pt::ptree &p_ptree);
+
+    std::string owner_id;
     std::string m_name;
     unsigned int m_id;
     bool m_is_connected;
 
+    t_gamepad_model m_model;
+
     t_gamepad_stick m_LStick;
     t_gamepad_stick m_RStick;
     t_gamepad_stick m_DPad;
+
+    float m_dead_zone;
+
+    thor::ActionMap<std::string> m_action_map;
 
     unsigned int m_A;
     unsigned int m_B;
@@ -68,8 +61,6 @@ namespace ControllerBind {
     unsigned int m_select;
     unsigned int m_LB;
     unsigned int m_RB;
-    float m_dead_zone;
-
   };
 
 }

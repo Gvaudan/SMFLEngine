@@ -15,8 +15,54 @@
 #define FONTS_SPRITES_PATH "ressources/sprites/"
 #define GAME_SETTINGS_FILE "ressources/GameSettings.json"
 
+#include <Thor/Input.hpp>
+#include <SFML/Window/Joystick.hpp>
+#include <TemplateSingleton.hh>
+
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+
 struct s_settings {
 };
+typedef sf::Joystick sfJoy;
+namespace ControllerBind {
 
+  typedef enum s_gamepad_model {
+    XBOXONE = 0,
+    XBOX360 = 1,
+    PS4 = 2
+  } t_gamepad_model;
+  typedef enum s_gamepad_commands {
+    LStick = '1',
+    RStick = '2',
+    LTrigger = '3',
+    RTrigger = '4',
+    DPad = '5',
+    A = '1',
+    B = '2',
+    X = '3',
+    Y = '4',
+    START = '5',
+    SELECT = '6',
+    LB = '7',
+    RB = '8'
+  } t_gamepad_commands;
+
+  typedef struct s_gamepad_stick {
+    sfJoy::Joystick::Axis m_axis_x;
+    sfJoy::Joystick::Axis m_axis_y;
+
+    thor::JoystickAxis *m_up = nullptr;
+    thor::JoystickAxis *m_down = nullptr;
+    thor::JoystickAxis *m_left = nullptr;
+    thor::JoystickAxis *m_right = nullptr;
+    float m_treshold;
+  } t_gamepad_stick;
+
+  typedef struct s_gamepad {
+    struct s_gamepad_stick;
+  } t_game_pad;
+
+};
 
 #endif //INC_2DGAMEFRAMEWORK_SETTINGS_H

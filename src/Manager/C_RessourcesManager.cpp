@@ -51,7 +51,7 @@ thor::ResourceLoader<pt::ptree> C_RessourcesManager::load_json_file(std::string 
 
 bool C_RessourcesManager::init_loader() {
 
-  auto item = m_holder_settings.acquire("SETTINGS", load_json_file(GAME_SETTINGS_FILE));
+  auto item = m_holder_settings.acquire("SETTINGS", load_json_file(GAME_SETTINGS_FILE), thor::Resources::Reuse);
   m_map_settings["SETTINGS"] = item;
   return true;
 }
@@ -61,5 +61,7 @@ const pt::ptree C_RessourcesManager::get_setting(std::string p_id) {
     auto setting = m_map_settings[p_id];
     return setting;
   }
-  return m_map_settings[p_id];
+  assert("Try to get a settings wich is not handle by the RessourcesManager");
+  pt::ptree tree;
+  return tree;
 }
