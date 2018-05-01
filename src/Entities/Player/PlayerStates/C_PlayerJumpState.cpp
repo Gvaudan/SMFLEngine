@@ -51,3 +51,7 @@ void C_PlayerJumpState::on_start() {
 C_BaseState *C_PlayerJumpState::on_exit() {
   return nullptr;
 }
+
+void C_PlayerJumpState::build_animiations() {
+
+}

@@ -116,3 +116,7 @@ void C_PlayerMoveState::on_start() {
 C_BaseState *C_PlayerMoveState::on_exit() {
   return nullptr;
 }
+
+void C_PlayerMoveState::build_animiations() {
+
+}

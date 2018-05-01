@@ -84,7 +84,6 @@ bool C_Game::init() {
 
   C_GameStateMachine::get_instance()->push_state(new C_InGameState());
 
-
   return false;
 }
 

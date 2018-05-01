@@ -36,6 +36,16 @@ public:
 private:
   thor::ResourceLoader<pt::ptree> load_json_file(std::string p_path);
 
+  pt::ptree load_animation_set();
+
+  pt::ptree load_entities_set(std::string p_entitie_type);
+
+  pt::ptree load_ressources_set();
+
+  pt::ptree load_game_set();
+
+  pt::ptree load_controllers_set();
+
   std::map<std::string, std::shared_ptr<sf::Font>> m_font_map;
   thor::ResourceHolder<sf::Texture, std::string, thor::Resources::RefCounted> m_holder_texture;
   thor::ResourceHolder<sf::Font, std::string, thor::Resources::RefCounted> m_holder_font;

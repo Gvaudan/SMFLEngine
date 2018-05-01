@@ -58,3 +58,7 @@ C_BaseState *C_InGameState::update_state(sf::Time p_eleapsed_time, C_Entity &p_e
 void C_InGameState::draw_state(sf::RenderTarget &p_target, sf::RenderStates p_states, C_Entity &p_entity) {
 
 }
+
+void C_InGameState::build_animiations() {
+
+}

@@ -79,3 +79,7 @@ C_BaseState *C_TestEntitieState::update_state(sf::Time p_eleapsed_time, C_Entity
 void C_TestEntitieState::draw_state(sf::RenderTarget &p_target, sf::RenderStates p_states, C_Entity &p_entity) {
 
 }
+
+void C_TestEntitieState::build_animiations() {
+
+}

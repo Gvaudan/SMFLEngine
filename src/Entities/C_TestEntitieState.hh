@@ -37,6 +37,11 @@ public:
 
   C_BaseState *on_exit() override;
 
+
+
+protected:
+  void build_animiations() override;
+
 protected:
   void init_actions() override;
 

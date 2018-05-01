@@ -27,6 +27,9 @@ public:
   void draw_state(sf::RenderTarget &p_target, sf::RenderStates p_states, C_Entity &p_entity) override;
 
   C_BaseState *on_exit() override;
+
+protected:
+  void build_animiations() override;
 };
 
 

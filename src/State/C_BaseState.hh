@@ -49,13 +49,13 @@ public:
 
 protected:
   virtual void init_actions();
-  virtual void build_animiations();
+  virtual void build_animiations() = 0;
   bool m_is_cancelable = true;
   bool m_is_reloadable = true;
 
   std::string m_state_id;
   thor::ActionMap<std::string> m_action_map;
-  thor::Animator<C_Entity, std::string> m_animator;
+  thor::Animator<C_BaseState, std::string> *m_animator;
   std::vector<thor::FrameAnimation> m_animations;
 
 };

@@ -31,6 +31,9 @@ public:
 
   C_BaseState *on_exit() override;
 
+protected:
+  void build_animiations() override;
+
 private:
   void init_action() override;
   sf::Vector2f m_move_vector;

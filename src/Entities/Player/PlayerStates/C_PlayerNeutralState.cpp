@@ -92,5 +92,4 @@ void C_PlayerNeutralState::init_actions() {
 }
 
 void C_PlayerNeutralState::build_animiations() {
-  C_BaseState::build_animiations();
 }

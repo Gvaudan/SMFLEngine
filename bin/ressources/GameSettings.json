@@ -2,8 +2,8 @@
   "version": "0.1",
   "Entities": [
     {
-      "id" : "player",
-      "properties" : {
+      "id": "player",
+      "properties": {
         "Stats": {
           "maxLife": 100,
           "LowAttackDammage": 10,
@@ -50,18 +50,76 @@
             "next_state_id": "",
             "overloadable": true,
             "reloadable": 0,
-            "animation": {
-              "keyframes ": [
-                {
-                  "pos_x": 0,
-                  "pose_y": 0,
-                  "with": 0,
-                  "height": 0
-                }
-              ],
-              "frame_time": 0,
-              "texture_id": "player"
-            }
+            "animation": [
+              {
+                "keyframes ": [
+                  {
+                    "pos_x": 26,
+                    "pose_y": 588,
+                    "with": 85,
+                    "height": 106
+                  },
+                  {
+                    "pos_x": 138,
+                    "pose_y": 588,
+                    "with": 86,
+                    "height": 106
+                  },
+                  {
+                    "pos_x": 250,
+                    "pose_y": 588,
+                    "with": 89,
+                    "height": 106
+                  },
+                  {
+                    "pos_x": 361,
+                    "pose_y": 588,
+                    "with": 91,
+                    "height": 106
+                  },
+                  {
+                    "pos_x": 473,
+                    "pose_y": 588,
+                    "with": 91,
+                    "height": 106
+                  },
+                  {
+                    "pos_x": 586,
+                    "pose_y": 588,
+                    "with": 89,
+                    "height": 106
+                  },
+                  {
+                    "pos_x": 702,
+                    "pose_y": 588,
+                    "with": 86,
+                    "height": 106
+                  },
+                  {
+                    "pos_x": 817,
+                    "pose_y": 588,
+                    "with": 85,
+                    "height": 106
+                  },
+                  {
+                    "pos_x": 930,
+                    "pose_y": 588,
+                    "with": 85,
+                    "height": 106
+                  },
+                  {
+                    "pos_x": 1043,
+                    "pose_y": 558,
+                    "with": 85,
+                    "height": 106
+                  }
+                ],
+                "frame_time": 0,
+                "texture_id": "player",
+                "play_back": true,
+                "animation_id": "stand"
+              }
+            ]
           },
           {
             "id": "OnMove",

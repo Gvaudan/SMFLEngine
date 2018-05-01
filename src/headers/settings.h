@@ -24,6 +24,30 @@
 
 struct s_settings {
 };
+
+namespace GameState {
+  namespace Player {
+    typedef enum {
+      NEUTRAL,
+      ON_MOVE,
+      ON_JUMP,
+      ON_CROUSH,
+      ON_HIT,
+      ON_ATTACK
+    } State;
+    typedef enum {
+      JUMP,
+      MOVE,
+      ATTACK
+    } Action;
+    typedef enum {
+      LOW,
+      HIGHT,
+      SUPER
+    } Attack;
+  }
+}
+
 typedef sf::Joystick sfJoy;
 namespace ControllerBind {
 
