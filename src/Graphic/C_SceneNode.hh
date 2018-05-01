@@ -30,6 +30,7 @@ public:
 
   sf::Transform getWorldTransform() const;
 
+  const std::string &get_id() const;
 
 private:
   virtual void updateCurrent(sf::Time dt);
@@ -42,6 +43,8 @@ private:
 
   void drawChildren(sf::RenderTarget &target, sf::RenderStates states) const;
 
+protected:
+  std::string m_id;
 
 private:
   std::vector<Ptr> mChildren;

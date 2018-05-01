@@ -13,13 +13,15 @@ void C_EventHandler::process_event(sf::Event &event, sf::Window *window, C_Playe
 
   C_GameStateMachine::get_instance()->clear_state_event();
   player.clear_state_event();
-
+  C_InputHandler::get_instance()->update_gamepads();
   while (window->pollEvent(event)) {
     if (event.type == sf::Event::Closed)
       window->close();
 
     if (event.type == sf::Event::JoystickConnected) {
       C_InputHandler::get_instance()->is_connected(event.joystickConnect.joystickId);
+      if (event.joystickConnect.joystickId == 0)
+        C_InputHandler::get_instance()->assign_gamepad(0, player.get_id());
     }
     if (event.type == sf::Event::JoystickDisconnected) {
       C_InputHandler::get_instance()->is_diconnected(event.joystickConnect.joystickId);

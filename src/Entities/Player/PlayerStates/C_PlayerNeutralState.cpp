@@ -1,7 +1,6 @@
 //
 // Created by David on 29/04/2018.
 //
-
 #include <boost/log/trivial.hpp>
 #include "C_PlayerNeutralState.hh"
 
@@ -15,11 +14,18 @@ C_PlayerNeutralState::C_PlayerNeutralState() {
 
 void C_PlayerNeutralState::init_action() {
 
+  //m_gamepad = C_InputHandler::get_instance()->get_gamepad(0);
 
-  thor::JoystickAxis LStick_left(0, sf::Joystick::X, (-25.f), false);
-  thor::JoystickAxis LStick_right(0, sf::Joystick::X, 25.f, true);
-  thor::JoystickAxis LStick_up(0, sf::Joystick::Y, -25.f, false);
-  thor::JoystickAxis LStick_down(0, sf::Joystick::Y, 25.f, true);
+  auto gmd = C_InputHandler::get_instance()->get_gamepad(0);
+
+  thor::JoystickAxis LStick_left(gmd->get_id(), gmd->get_LStick().m_axis_x,
+                                 -gmd->get_dead_zone(), false);
+  thor::JoystickAxis LStick_right(gmd->get_id(), gmd->get_LStick().m_axis_x,
+                                  gmd->get_dead_zone(), true);
+  thor::JoystickAxis LStick_up(gmd->get_id(), gmd->get_LStick().m_axis_y,
+                               -gmd->get_dead_zone(), false);
+  thor::JoystickAxis LStick_down(gmd->get_id(), gmd->get_LStick().m_axis_y,
+                                 gmd->get_dead_zone(), true);
 
   thor::Action left_stick_move = thor::Action(LStick_left)
                                  || thor::Action(LStick_right)
@@ -28,7 +34,7 @@ void C_PlayerNeutralState::init_action() {
 
   m_action_map["OnMove"] = left_stick_move;
 
-  thor::Action move_jump(thor::JoystickButton(0,0), thor::Action::ReleaseOnce);
+  thor::Action move_jump(thor::JoystickButton(0, 0), thor::Action::ReleaseOnce);
   m_action_map["OnJump"] = move_jump;
 
 }

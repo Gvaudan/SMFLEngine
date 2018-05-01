@@ -16,10 +16,16 @@ C_PlayerMoveState::C_PlayerMoveState() {
 
 void C_PlayerMoveState::init_action() {
 
-  thor::JoystickAxis LStick_left(0, sf::Joystick::X, (-25.f), false);
-  thor::JoystickAxis LStick_right(0, sf::Joystick::X, 25.f, true);
-  thor::JoystickAxis LStick_up(0, sf::Joystick::Y, -25.f, false);
-  thor::JoystickAxis LStick_down(0, sf::Joystick::Y, 25.f, true);
+  m_gamepad = C_InputHandler::get_instance()->get_gamepad(0);
+
+  thor::JoystickAxis LStick_left(m_gamepad->get_id(), m_gamepad->get_LStick().m_axis_x,
+                                 -m_gamepad->get_dead_zone(), false);
+  thor::JoystickAxis LStick_right(m_gamepad->get_id(), m_gamepad->get_LStick().m_axis_x,
+                                  m_gamepad->get_dead_zone(), true);
+  thor::JoystickAxis LStick_up(m_gamepad->get_id(), m_gamepad->get_LStick().m_axis_y,
+                               -m_gamepad->get_dead_zone(), false);
+  thor::JoystickAxis LStick_down(m_gamepad->get_id(), m_gamepad->get_LStick().m_axis_y,
+                                 m_gamepad->get_dead_zone(), true);
 
 
   thor::Action left_stick_move = thor::Action(LStick_left)
@@ -58,20 +64,21 @@ void C_PlayerMoveState::init_action() {
 
 C_PlayerStateBase *C_PlayerMoveState::handle_input(C_Player &p_player) {
 
-  if (m_action_map.isActive("StopMove")) {
-    return new C_PlayerNeutralState();
-  }
-
   if (m_action_map.isActive("MoveLeft")) {
+    m_move_vector.x = m_gamepad->get_LStick().current_x;
   }
 
   if (m_action_map.isActive("MoveRight")) {
+    m_move_vector.x = m_gamepad->get_LStick().current_x;
+  }
+  ///-------------------------------------
+  if (m_action_map.isActive("StopMove")) {
+    return new C_PlayerNeutralState();
   }
 
   if (m_action_map.isActive("Jump")) {
     return new C_PlayerJumpState();
   }
-
   return nullptr;
 }
 
@@ -80,7 +87,6 @@ void C_PlayerMoveState::handleInput() {
 }
 
 void C_PlayerMoveState::update() {
-
 }
 
 void C_PlayerMoveState::update(sf::Time p_eleapsed_time) {
@@ -89,7 +95,7 @@ void C_PlayerMoveState::update(sf::Time p_eleapsed_time) {
 
 
 C_BaseState *C_PlayerMoveState::update_state(sf::Time p_eleapsed_time, C_Entity &p_entity) {
-
+  p_entity.move(m_move_vector.x * p_eleapsed_time.asMilliseconds(), m_move_vector.y * p_eleapsed_time.asMilliseconds());
   return nullptr;
 }
 

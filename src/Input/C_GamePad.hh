@@ -17,7 +17,10 @@ namespace ControllerBind {
   class C_GamePad {
   public:
     C_GamePad();
+
     C_GamePad(unsigned int p_id);
+
+    virtual ~C_GamePad();
 
     void bind_inputs(pt::ptree &p_ptree);
 
@@ -28,6 +31,37 @@ namespace ControllerBind {
     const t_gamepad_stick &get_RStick() const;
 
     const t_gamepad_stick &get_DPad() const;
+
+    const std::string &get_owner_id() const;
+
+    const std::string &get_name() const;
+
+    unsigned int get_id() const;
+
+    bool get_is_connected() const;
+
+    t_gamepad_model get_model() const;
+
+    float get_dead_zone() const;
+
+    const thor::ActionMap<std::string> &get_action_map() const;
+
+    unsigned int get_A() const;
+
+    unsigned int get_B() const;
+
+    unsigned int get_X() const;
+
+    unsigned int get_Y() const;
+
+    unsigned int get_start() const;
+
+    unsigned int get_select() const;
+
+    unsigned int get_LB() const;
+
+    unsigned int get_RB() const;
+
 
     void on_connect();
 

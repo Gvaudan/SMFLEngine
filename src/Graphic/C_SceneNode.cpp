@@ -65,3 +65,7 @@ void C_SceneNode::drawCurrent(sf::RenderTarget &target, sf::RenderStates states)
 void C_SceneNode::drawChildren(sf::RenderTarget &target, sf::RenderStates states) const {
 
 }
+
+const std::string &C_SceneNode::get_id() const {
+  return m_id;
+}

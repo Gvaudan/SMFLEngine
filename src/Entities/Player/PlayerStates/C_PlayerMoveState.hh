@@ -33,6 +33,7 @@ public:
 
 private:
   void init_action() override;
+  sf::Vector2f m_move_vector;
 };
 
 

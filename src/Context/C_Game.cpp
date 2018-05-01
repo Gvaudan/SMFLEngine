@@ -7,6 +7,7 @@
 #include "../State/C_GameStateMachine.h"
 #include "../Manager/C_RessourcesManager.hh"
 #include "../Entities/C_TestStateMachine.hh"
+#include "../Input/C_InputHandler.hh"
 #include <iostream>
 
 using namespace std;
@@ -79,7 +80,10 @@ bool C_Game::init() {
   C_EntityFactory::get_instance()->RegisterType("test-sprite", new C_TestEntityCreator());
   m_test_entitie = (C_TestEntitie *) C_EntityFactory::get_instance()->Create("test-sprite");
 
+  C_InputHandler::get_instance()->assign_gamepad(0, m_player.get_id());
+
   C_GameStateMachine::get_instance()->push_state(new C_InGameState());
+
 
   return false;
 }

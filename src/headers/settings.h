@@ -56,7 +56,12 @@ namespace ControllerBind {
     thor::JoystickAxis *m_down = nullptr;
     thor::JoystickAxis *m_left = nullptr;
     thor::JoystickAxis *m_right = nullptr;
+
     float m_treshold;
+
+    float current_x;
+    float current_y;
+
   } t_gamepad_stick;
 
   typedef struct s_gamepad {

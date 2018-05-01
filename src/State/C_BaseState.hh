@@ -5,6 +5,8 @@
 #ifndef INC_2DGAMEFRAMEWORK_BASESTATE_HH
 #define INC_2DGAMEFRAMEWORK_BASESTATE_HH
 
+
+#include "../Input/C_InputHandler.hh"
 #include <Thor/Input.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
