@@ -24,23 +24,23 @@ void C_Player::drawCurrent(sf::RenderTarget &p_target, sf::RenderStates p_states
 
 void C_Player::handle_input() {
   if (!m_state_list.empty()) {
-    auto current_state = (C_PlayerStateBase *) m_state_list.back();
-    auto new_state = current_state->handle_input((*this));
-    if (new_state != nullptr) {
-      change_state(new_state);
-    }
-    m_state_list.back()->get_action_map().clearEvents();
+	auto current_state = (C_PlayerStateBase *) m_state_list.back();
+	auto new_state = current_state->handle_input((*this));
+	if (new_state != nullptr) {
+	  change_state(new_state);
+	}
+	m_state_list.back()->get_action_map().clearEvents();
   }
 }
 
 void C_Player::update(sf::Time dt) {
   C_SceneNode::update(dt);
   if (!m_state_list.empty()) {
-    auto current_state = (C_PlayerStateBase *) m_state_list.back();
-    auto new_state = current_state->update_state(dt, (*this));
-    if (new_state != nullptr) {
-      change_state(new_state);
-    }
+	auto current_state = (C_PlayerStateBase *) m_state_list.back();
+	auto new_state = current_state->update_state(dt, (*this));
+	if (new_state != nullptr) {
+	  change_state(new_state);
+	}
   }
 
 
@@ -51,4 +51,24 @@ void C_Player::update(sf::Time dt) {
 
 C_BaseState *C_Player::handle_state_input(C_Entity &p_entitie) {
   return nullptr;
+}
+C_Entity *C_PlayerCreator::C_CreateEntity() const {
+
+  /***
+   * TODO : Charger le set de l'entitie
+   ***/
+  auto set = C_RessourcesManager::get_instance()->load_entities_set("player");
+
+  //TODO : Charger les stats de l'entitie
+
+  //TODO : Charger les proprietees
+
+  auto *new_player = new C_Player();
+
+  return new_player;
+}
+C_PlayerCreator::~C_PlayerCreator() {
+  /***
+ * TODO : Detruire les ressources de l'entitie
+ ***/
 }

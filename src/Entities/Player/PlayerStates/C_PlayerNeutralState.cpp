@@ -10,6 +10,7 @@
 C_PlayerNeutralState::C_PlayerNeutralState() {
   m_state_id = "PlayerNeutralState";
   init_action();
+  build_animiations();
 }
 
 void C_PlayerNeutralState::init_action() {
@@ -19,18 +20,18 @@ void C_PlayerNeutralState::init_action() {
   auto gmd = C_InputHandler::get_instance()->get_gamepad(0);
 
   thor::JoystickAxis LStick_left(gmd->get_id(), gmd->get_LStick().m_axis_x,
-                                 -gmd->get_dead_zone(), false);
+								 -gmd->get_dead_zone(), false);
   thor::JoystickAxis LStick_right(gmd->get_id(), gmd->get_LStick().m_axis_x,
-                                  gmd->get_dead_zone(), true);
+								  gmd->get_dead_zone(), true);
   thor::JoystickAxis LStick_up(gmd->get_id(), gmd->get_LStick().m_axis_y,
-                               -gmd->get_dead_zone(), false);
+							   -gmd->get_dead_zone(), false);
   thor::JoystickAxis LStick_down(gmd->get_id(), gmd->get_LStick().m_axis_y,
-                                 gmd->get_dead_zone(), true);
+								 gmd->get_dead_zone(), true);
 
   thor::Action left_stick_move = thor::Action(LStick_left)
-                                 || thor::Action(LStick_right)
-                                 || thor::Action(LStick_up)
-                                 || thor::Action(LStick_down);
+	  || thor::Action(LStick_right)
+	  || thor::Action(LStick_up)
+	  || thor::Action(LStick_down);
 
   m_action_map["OnMove"] = left_stick_move;
 
@@ -42,11 +43,11 @@ void C_PlayerNeutralState::init_action() {
 C_PlayerStateBase *C_PlayerNeutralState::handle_input(C_Player &p_player) {
 
   if (m_action_map.isActive("OnMove")) {
-    return (C_PlayerStateBase *)
-        new C_PlayerMoveState();
+	return (C_PlayerStateBase *)
+		new C_PlayerMoveState();
   }
   if (m_action_map.isActive("OnJump")) {
-    return (C_PlayerStateBase *) new C_PlayerJumpState();
+	return (C_PlayerStateBase *) new C_PlayerJumpState();
   }
 
   return nullptr;
@@ -63,7 +64,6 @@ void C_PlayerNeutralState::update() {
 void C_PlayerNeutralState::update(sf::Time p_eleapsed_time) {
 
 }
-
 
 C_BaseState *C_PlayerNeutralState::update_state(sf::Time p_eleapsed_time, C_Entity &p_entity) {
   return nullptr;
@@ -92,4 +92,5 @@ void C_PlayerNeutralState::init_actions() {
 }
 
 void C_PlayerNeutralState::build_animiations() {
+
 }

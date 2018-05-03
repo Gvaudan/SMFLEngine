@@ -96,7 +96,6 @@ void C_PlayerMoveState::update(sf::Time p_eleapsed_time) {
 
 C_BaseState *C_PlayerMoveState::update_state(sf::Time p_eleapsed_time, C_Entity &p_entity) {
   sf::Vector2f move(m_move_vector.x * p_eleapsed_time.asSeconds(), m_move_vector.y * p_eleapsed_time.asSeconds());
-  BOOST_LOG_TRIVIAL(debug) << "Vector move : X : " << std::to_string(move.x)<< " | Y :" << std::to_string(move.x) ;
   p_entity.move(move);
   return nullptr;
 }

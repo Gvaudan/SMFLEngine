@@ -51,8 +51,6 @@ void C_Game::run() {
 }
 
 bool C_Game::init() {
-  C_RessourcesManager::get_instance()->init_loader();
-
   m_font = C_RessourcesManager::get_instance()->load_font("FPS", "ressources/fonts/8-Bit Madness.ttf");
   mFont = *m_font.get();
   mStatisticsText.setFont(mFont);

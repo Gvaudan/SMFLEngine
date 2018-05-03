@@ -6,7 +6,6 @@
 #include "C_BaseStateMachine.hh"
 
 void C_BaseStateMachine::push_state(C_BaseState *p_state) {
-  BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__;
   m_state_list.push_back(p_state);
   m_state_list.back()->on_start();
 }
@@ -36,7 +35,6 @@ void C_BaseStateMachine::pop_state() {
 
     if (!m_state_list.empty()) { m_state_list.back()->on_start(); }
   }
-  BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : END";
 }
 
 void C_BaseStateMachine::update() {
@@ -55,7 +53,7 @@ void C_BaseStateMachine::draw(sf::RenderTarget &target, sf::RenderStates &states
   if (!m_state_list.empty()) {
     m_state_list.back()->draw(target, states);
   } else {
-    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : NO STATE";
+    BOOST_LOG_TRIVIAL(warning) << __PRETTY_FUNCTION__ << " : NO STATE";
   }
 }
 
@@ -63,7 +61,7 @@ void C_BaseStateMachine::handleInput() {
   if (!m_state_list.empty()) {
     m_state_list.back()->handleInput();
   } else {
-    BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << " : NO STATE";
+    BOOST_LOG_TRIVIAL(warning) << __PRETTY_FUNCTION__ << " : NO STATE";
   }
 }
 

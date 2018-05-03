@@ -56,8 +56,7 @@ protected:
   std::string m_state_id;
   thor::ActionMap<std::string> m_action_map;
   thor::Animator<C_BaseState, std::string> *m_animator;
-  std::vector<thor::FrameAnimation> m_animations;
-
+  std::set<thor::FrameAnimation> m_animations;
 };
 
 #endif //INC_2DGAMEFRAMEWORK_BASESTATE_HH

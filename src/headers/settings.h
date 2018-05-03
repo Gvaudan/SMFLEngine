@@ -12,7 +12,8 @@
 
 #define RESSOURCES_ROOT "ressources/"
 #define FONTS_LEVEL_PATH "ressources/fonts/"
-#define FONTS_SPRITES_PATH "ressources/sprites/"
+#define TEXTURES_PATH "ressources/textures/"
+#define SPRITES_PATH "ressources/textures/sprites/"
 #define GAME_SETTINGS_FILE "ressources/GameSettings.json"
 
 #include <Thor/Input.hpp>

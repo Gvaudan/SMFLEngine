@@ -45,7 +45,6 @@ void C_PlayerJumpState::draw(sf::RenderTarget &target, sf::RenderStates states) 
 
 void C_PlayerJumpState::on_start() {
   BOOST_LOG_TRIVIAL(info) << __PRETTY_FUNCTION__ << "Player is Jumping";
-
 }
 
 C_BaseState *C_PlayerJumpState::on_exit() {

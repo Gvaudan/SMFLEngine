@@ -6,6 +6,7 @@
 #define INC_2DGAMEFRAMEWORK_C_PLAYER_HH
 
 #include "../C_StateEntity.hh"
+#include "../Manager/C_EntityFactory.hh"
 
 class C_Player : public C_StateEntity {
 public:
@@ -26,5 +27,11 @@ private:
   sf::RectangleShape m_rectangle;
 };
 
+//======================================================================================================================
+
+class C_PlayerCreator : C_BaseEntityCreator {
+  C_Entity *C_CreateEntity() const override;
+  ~C_PlayerCreator() override;
+};
 
 #endif //INC_2DGAMEFRAMEWORK_C_PLAYER_HH

@@ -3,15 +3,15 @@
   "Entities": [
     {
       "id": "player",
+      "Stats": {
+        "maxLife": 100,
+        "LowAttackDammage": 10,
+        "HighAttackDammage": 20,
+        "SuperAttackDammage": 40,
+        "JumpVelocity": 250,
+        "MoveVelocity": 150
+      },
       "properties": {
-        "Stats": {
-          "maxLife": 100,
-          "LowAttackDammage": 10,
-          "HighAttackDammage": 20,
-          "SuperAttackDammage": 40,
-          "JumpVelocity": 250,
-          "MoveVelocity": 150
-        },
         "Actions": [
           {
             "action_name": "Move",
@@ -215,32 +215,32 @@
       }
     }
   ],
+  "Ressources": {
+    "textures": {
+      "directory": "textures/",
+      "elements": [
+        {
+          "FileName": "sprites/Neo Geo NGCD - Samurai Shodown 5 Samurai Shodown 5 Special - Hanzo Hattori.png",
+          "id": "player"
+        }
+      ]
+    },
+    "fonts": {
+      "directory": "fonts/",
+      "elements": [
+        {
+          "FileName": "8-Bit Madness.ttf",
+          "id": "8BITFONT"
+        }
+      ]
+    },
+    "sounds": {}
+  },
   "Game": {
     "Window": {
       "Height": 480,
       "Width": 640,
       "FrameRate": 60
-    },
-    "Ressources": {
-      "textures": {
-        "directory": "textures/",
-        "elements": [
-          {
-            "FileName": "sprites/Neo Geo NGCD - Samurai 5 Samurai Shodown 5 Special - Hanzo Hattori.png",
-            "id": "player"
-          }
-        ]
-      },
-      "fonts": {
-        "directory": "fonts/",
-        "elements": [
-          {
-            "FileName": "8-Bit Madness.ttf",
-            "id": "8BITFONT"
-          }
-        ]
-      },
-      "sounds": {}
     },
     "Control": {
       "controller": [
